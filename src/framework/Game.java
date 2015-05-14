@@ -39,12 +39,14 @@ public class Game {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
 		
+		MouseState.initialize();
+		MouseState.setWindowHandle(window);
+		
 		initialize();
 	}
 	
 	public void initialize(){
-		MouseState.initialize();
-		MouseState.setWindowHandle(window);
+		
 		
 	}
 	
