@@ -6,7 +6,7 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import framework.input.MouseState;
+import framework.input.*;
 
 
 /**
@@ -36,11 +36,16 @@ public class Game {
 		//set contentPane
 		contentPane = (JPanel)window.getContentPane();
 		
+		window.setTitle("SNX");
+		
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
 		
-		MouseState.initialize();
-		MouseState.setWindowHandle(window);
+		Mouse.initialize();
+		Mouse.setWindowHandle(window);
+		
+		Keyboard.initialize();
+		Keyboard.setWindowHandle(window);
 		
 		initialize();
 	}
@@ -74,6 +79,8 @@ public class Game {
 			//TODO: implement draw skipping when needed
 			//draw to the screen
 			refreshScreen(time);
+			
+			System.out.println(Keyboard.getState().getPressedKeys());
 			
 			//the amount of time it took to update and/or draw
 			long updateTime = System.currentTimeMillis() - currentStartTime;
