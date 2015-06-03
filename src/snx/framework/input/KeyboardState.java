@@ -1,10 +1,11 @@
-package framework.input;
+package snx.framework.input;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import static java.awt.event.KeyEvent.*;
-
+/**
+ * By Waffalz
+ * A state-based representation of the state of the keyboard keys. Because Java's event-driven one is crap
+ */
 public class KeyboardState {
 	
 	//a list of all the keys pressed in the state. If a key is pressed its respective enum will be contained in the key pressed

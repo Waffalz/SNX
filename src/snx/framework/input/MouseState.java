@@ -1,4 +1,4 @@
-package framework.input;
+package snx.framework.input;
 
 import java.awt.Point;
 
@@ -45,7 +45,7 @@ public class MouseState {
 		toReturn.mouse2Pressed = mouse2Pressed;
 		toReturn.mouse3Pressed = mouse3Pressed;
 		
-		toReturn.pos = (Point)pos.clone();
+		toReturn.pos = new Point(pos.x, pos.y);
 		
 		return toReturn;
 	}

@@ -1,4 +1,4 @@
-package framework.input;
+package snx.framework.input;
 
 import static java.awt.event.KeyEvent.*;
 
@@ -6,10 +6,11 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 /**
+ * By Waffalz
  * enum that represents keyboard keys
  * Hardcoding hoooooooo
  */
-enum Keys{
+public enum Keys{
 	
 	//letter keys
 	A("A", VK_A), 

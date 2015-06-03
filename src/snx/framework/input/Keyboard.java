@@ -1,18 +1,22 @@
-package framework.input;
+package snx.framework.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 
+/**
+ * By Waffalz
+ * Handles converting keyboard input into KeybordState form
+ */
 public class Keyboard {
-private static KeyboardState currentState;
+	
+	private static KeyboardState currentState = new KeyboardState();
 	
 	private static JFrame windowHandle;
 	private static KeyListener windowHandleListener;
 	
 	public static void initialize(){
-		currentState = new KeyboardState();
 		Keys.initialize();
 	}
 	

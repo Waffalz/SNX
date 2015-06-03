@@ -1,21 +1,24 @@
-package framework.input;
+package snx.framework.input;
 
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.event.MouseInputListener;
 
+/**
+ * By Waffalz
+ * Manages the game's mouse input
+ */
 public class Mouse {
-	private static MouseState currentState; 
+	private static MouseState currentState = new MouseState(); 
 	
 	static private JFrame windowHandle;
 	static private MouseInputListener windowHandleListener;
 	
 	/**
-	 * Called once when a new Game 
+	 * Called once when a new Game is created
 	 */
 	public static void initialize(){
-		currentState = new MouseState();
 		
 	}
 	
