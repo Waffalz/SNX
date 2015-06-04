@@ -33,6 +33,9 @@ public class UIComponent {
 	private BufferedImage image;
 	
 	private Color color;
+	private Color borderColor;
+	
+	private float borderSize;
 	
 	private ArrayList<UIComponent> addList;//a queue for UIComponents to add when not iterating through children
 	private ArrayList<UIComponent> removeList;//a queue for UIComponents to remove when not iterating through children
@@ -48,7 +51,10 @@ public class UIComponent {
 		visible = true;
 		enabled = true;
 		
-		color = Color.cyan;
+		borderSize = 3;
+		
+		color = new Color(101, 156, 239);
+		borderColor = Color.WHITE;
 		
 		addList = new ArrayList<UIComponent>();
 		removeList = new ArrayList<UIComponent>();
@@ -56,20 +62,29 @@ public class UIComponent {
 	
 	public void update(GameTime gameTime){
 		processChildren(gameTime);
-		
 	}
 	
 	public void draw(GameTime gameTime, SpriteBatch spriteBatch){
 		
 		if (visible){
-			if (image != null){
-				spriteBatch.draw(image, getDefiniteBounds(), color);
-			} else {
-				spriteBatch.drawFillRectangle(getDefiniteBounds(), color);
-			}
+			Rectangle defBounds = getDefiniteBounds();
+			drawBackground(spriteBatch, defBounds, color, borderColor);
 			drawChildren(gameTime, spriteBatch);
 		}
 		
+	}
+
+	/**
+	 * @param spriteBatch
+	 */
+	protected void drawBackground(SpriteBatch spriteBatch, Rectangle dest, Color col, Color bCol) {
+		
+		if (image != null){
+			spriteBatch.draw(image, dest, col);
+		} else {
+			spriteBatch.drawFillRectangle(dest, col);
+			spriteBatch.drawRectangle(dest, borderSize, bCol);
+		}
 	}
 	
 	/**
@@ -160,7 +175,6 @@ public class UIComponent {
 		removeList.clear();
 	}
 	
-	
 	//Because your code isn't professional until you have a buttload of nearly excessive encapsulation
 
 	public Point getPosition() {
@@ -179,7 +193,7 @@ public class UIComponent {
 			return bounds;
 		} else {
 			Rectangle parentPos = parent.getDefiniteBounds();
-			return new Rectangle(bounds.getLocation().x + parentPos.x, bounds.getLocation().y + parentPos.y);
+			return new Rectangle(bounds.getLocation().x + parentPos.x, bounds.getLocation().y + parentPos.y, bounds.width, bounds.height);
 			//yeah, it's kinda recursive
 		}
 	}
@@ -217,7 +231,7 @@ public class UIComponent {
 	}
 
 	public ArrayList<UIComponent> getChildren() {
-		return children;
+		return new ArrayList<UIComponent>(children);
 	}
 
 	public int getDepth() {
@@ -264,6 +278,34 @@ public class UIComponent {
 	 */
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	/**
+	 * @return the borderColor
+	 */
+	public Color getBorderColor() {
+		return borderColor;
+	}
+
+	/**
+	 * @param borderColor the borderColor to set
+	 */
+	public void setBorderColor(Color borderColor) {
+		this.borderColor = borderColor;
+	}
+
+	/**
+	 * @return the borderSize
+	 */
+	public float getBorderSize() {
+		return borderSize;
+	}
+
+	/**
+	 * @param borderSize the borderSize to set
+	 */
+	public void setBorderSize(float borderSize) {
+		this.borderSize = borderSize;
 	}
 	
 }

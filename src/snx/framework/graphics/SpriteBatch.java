@@ -1,9 +1,12 @@
 package snx.framework.graphics;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
@@ -90,7 +93,14 @@ public class SpriteBatch {
 		Color oColor = graphics.getColor();
 		graphics.setFont(font);
 		graphics.setColor(color);
-		graphics.drawString(text, position.x, position.y);
+		
+		
+		String[] lines = text.split("\n"); //splitting up text by lines
+		FontMetrics metrics = graphics.getFontMetrics(font); //metrics for measuring text
+		for (int i = 0; i < lines.length; i++){
+			graphics.drawString(lines[i], position.x, position.y + (i + 1) * metrics.getHeight() - metrics.getMaxDescent());
+		}
+		
 		graphics.setColor(oColor);
 		graphics.setFont(oFont);
 	}
@@ -116,7 +126,11 @@ public class SpriteBatch {
 		
 		graphics.translate(-origin.x, -origin.y);
 		
-		graphics.drawString(text, 0, 0);
+		String[] lines = text.split("\n"); //splitting up text by lines
+		FontMetrics metrics = graphics.getFontMetrics(font); //metrics for measuring text
+		for (int i = 0; i < lines.length; i++){
+			graphics.drawString(lines[i], 0, (i + 1) * metrics.getHeight() - metrics.getMaxDescent());
+		}
 		
 		graphics.setTransform(oTrans);//returns the graphics to its original transformation state
 		graphics.setColor(oCol);
@@ -128,11 +142,14 @@ public class SpriteBatch {
 	 * @param dest
 	 * @param color
 	 */
-	public void drawRectangle(Rectangle dest, Color color){
+	public void drawRectangle(Rectangle dest, float thickness, Color color){
 		Color oCol = graphics.getColor();
+		Stroke oStroke = graphics.getStroke();
 		graphics.setColor(color);
+		graphics.setStroke(new BasicStroke(thickness));
 		graphics.drawRect(dest.x, dest.y, dest.width, dest.height);
 		graphics.setColor(oCol);
+		graphics.setStroke(oStroke);
 	}
 	
 	/**

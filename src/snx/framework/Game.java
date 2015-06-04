@@ -200,6 +200,10 @@ public class Game {
 		
 	}
 	
+	public void exit(){
+		System.exit(0);
+	}
+	
 	//properties hoooooo
 	
 	public JFrame getWindow(){
