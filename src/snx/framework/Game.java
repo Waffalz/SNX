@@ -36,6 +36,8 @@ public class Game {
 	private BufferedImage imageBuffer;
 	private Graphics2D graphicsDevice;
 	
+	private GameState gameState;
+	
 	public Game(){
 		running = false;
 		framerateVisible = false;
@@ -172,7 +174,7 @@ public class Game {
 		//draw the contents of the buffer to the contentPane
 		graphicsDevice.setColor(Color.BLACK);
 		if (framerateVisible){
-			graphicsDevice.drawString("FPS: "+ frameRate, 20, 20);//draw framerate
+			graphicsDevice.drawString("FPS: "+ frameRate, 0, 10);//draw framerate
 		}
 		
 		drawPanel.getGraphics().drawImage(imageBuffer, 0, 0, drawPanel);//draw the graphics buffer to drawPanel
@@ -224,6 +226,29 @@ public class Game {
 	
 	public ContentManager getContentManager(){
 		return content;
+	}
+
+	/**
+	 * @return the gameState
+	 */
+	public GameState getGameState() {
+		return gameState;
+	}
+
+	/**
+	 * @param gameState the gameState to set
+	 */
+	public void setGameState(GameState newState){
+		if (newState.getParent() == null){
+			if (gameState != null){
+				gameState.unload();
+			}
+			gameState = newState;
+			newState.setParent(this);
+			newState.initialize();
+		} else {
+			throw new RuntimeException("Cannot add a GameStart that is already a child to another Game");
+		}
 	}
 	
 }

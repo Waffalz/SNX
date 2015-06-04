@@ -2,7 +2,9 @@ package snx.framework.addon;
 
 import java.awt.Rectangle;
 
+import snx.framework.GameTime;
 import snx.framework.Vector2;
+import snx.framework.graphics.SpriteBatch;
 
 /**
  * By Waffalz
@@ -45,5 +47,13 @@ public class Entity {
 	
 	public Rectangle getBounds(){
 		return new Rectangle((int)position.x, (int)position.y, (int)size.x, (int)size.y);
+	}
+	
+	public void update(GameTime gameTime){
+		
+	}
+	
+	public void draw(GameTime gameTime, SpriteBatch spriteBatch){
+		
 	}
 }

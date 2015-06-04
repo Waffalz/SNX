@@ -57,13 +57,13 @@ public class UIButton extends UIComponent {
 		MouseState mouse = Mouse.getState();
 		
 		//mouseOver controls when the button sees that the mouse is hovering over the button when it is enabled
-		if (isEnabled()){
+		if (isEnabled() &&  isVisible()){
 			mouseOver = (getDefiniteBounds().contains(mouse.getPosition()));//if mouse is within the bounds of the button
 			pressed = (mouseOver && mouse.isMouse1Pressed());
 		}
 		
 		//activate listeners when mouse is released over the button 
-		if (mouseOver && !mouse.isMouse1Pressed() && oMouse.isMouse1Pressed()){
+		if (mouseOver &&  isVisible() && isEnabled() && !mouse.isMouse1Pressed() && oMouse.isMouse1Pressed()){
 			for (Runnable ru : listeners){
 				ru.run();
 			}
@@ -80,19 +80,21 @@ public class UIButton extends UIComponent {
 			if (isEnabled()){
 				if (mouseOver){
 					Color col = getColor();
-					if (pressed){
+					if (pressed){//darken the displayed color if mouse is pressed over the button
 						col = col.darker();
 					}
-					
+					//decrease the size of the button if mouse is hovering over
 					Rectangle bBounds = new Rectangle(defBounds.x + HOVER_DISPLACEMENT, defBounds.y + HOVER_DISPLACEMENT,
 							defBounds.width - HOVER_DISPLACEMENT * 2, defBounds.height - HOVER_DISPLACEMENT * 2);
 					drawBackground(spriteBatch, bBounds, col, getBorderColor());
 					drawText(spriteBatch, textColor);
 				} else {
+					//draw default state of the button
 					drawBackground(spriteBatch, defBounds, getColor(), getBorderColor());
 					drawText(spriteBatch, textColor);
 				}
 			} else {
+				//gray out the button if not enabled
 				drawBackground(spriteBatch, defBounds, getColor().brighter(), getBorderColor().brighter());
 				drawText(spriteBatch, textColor.brighter());
 			}

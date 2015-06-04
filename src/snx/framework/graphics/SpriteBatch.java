@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
@@ -179,5 +180,12 @@ public class SpriteBatch {
 	
 	public Graphics2D getGraphicsDevice(){
 		return graphics;
+	}
+	
+	public static void printAllFonts(){
+		Font[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
+		for (Font fo : fonts){
+			System.out.println(fo.getFontName());
+		}
 	}
 }

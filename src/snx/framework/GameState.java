@@ -1,7 +1,5 @@
-package snx.framework.addon;
+package snx.framework;
 
-import snx.framework.Game;
-import snx.framework.GameTime;
 import snx.framework.graphics.SpriteBatch;
 
 /**
@@ -11,8 +9,8 @@ import snx.framework.graphics.SpriteBatch;
 public abstract class GameState {
 	private Game parent;
 	
-	public GameState(Game parent){
-		this.parent = parent;
+	public GameState(){
+		parent = null;
 	}
 	
 	public void initialize(){
@@ -25,7 +23,7 @@ public abstract class GameState {
 	
 	public void draw(GameTime gameTime, SpriteBatch spriteBatch){
 		
-	}
+	} 
 	
 	public void unload(){
 		
@@ -35,4 +33,7 @@ public abstract class GameState {
 		return parent;
 	}
 	
+	protected void setParent(Game parent){
+		this.parent = parent;
+	}
 }
