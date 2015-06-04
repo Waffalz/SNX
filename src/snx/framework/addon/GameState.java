@@ -2,6 +2,7 @@ package snx.framework.addon;
 
 import snx.framework.Game;
 import snx.framework.GameTime;
+import snx.framework.graphics.SpriteBatch;
 
 /**
  * By Waffalz
@@ -22,7 +23,7 @@ public abstract class GameState {
 			
 	}
 	
-	public void draw(GameTime gameTime){
+	public void draw(GameTime gameTime, SpriteBatch spriteBatch){
 		
 	}
 	

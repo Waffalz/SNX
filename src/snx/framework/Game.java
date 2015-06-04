@@ -22,6 +22,8 @@ public class Game {
 	private JFrame window;
 	private JPanel contentPane;
 	
+	private JPanel drawPanel;
+	
 	private boolean running; //whether the game loop is running
 	
 	public boolean framerateVisible;
@@ -41,31 +43,42 @@ public class Game {
 		//creating the window
 		window = new JFrame();
 		window.setBounds(100, 100, 1080, 720);
+		window.setLayout(null);
 		
 		//set contentPane
 		contentPane = (JPanel)window.getContentPane();
+		contentPane.setSize(window.getSize());
+		contentPane.setLayout(null);
+		
+		//set the panel for drawing things to
+		drawPanel = new JPanel();
+		drawPanel.setLayout(null);
+		drawPanel.setBounds(contentPane.getBounds());
+		contentPane.add(drawPanel);
 		
 		window.setTitle("SNX");
 		
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
 		
-		imageBuffer = (BufferedImage) contentPane.createImage(contentPane.getWidth(), contentPane.getHeight());
+		imageBuffer = (BufferedImage) drawPanel.createImage(drawPanel.getWidth(), drawPanel.getHeight());
 		graphicsDevice = (Graphics2D)imageBuffer.getGraphics();
-		graphicsDevice.setClip(0, 0, contentPane.getWidth(), contentPane.getHeight());
+		graphicsDevice.setClip(0, 0, drawPanel.getWidth(), drawPanel.getHeight());
 		
 		content = new ContentManager();
+		
+		Mouse.initialize();
+		Mouse.setWindowHandle(window);
+		
+		Keyboard.initialize();
+		Keyboard.setWindowHandle(window);
 	}
 	
 	/**
 	 * Called to start up important game things, separate from the constructor
 	 */
 	public void initialize(){
-		Mouse.initialize();
-		Mouse.setWindowHandle(window);
 		
-		Keyboard.initialize();
-		Keyboard.setWindowHandle(window);
 		
 		loadContent();
 	}
@@ -161,17 +174,21 @@ public class Game {
 		if (framerateVisible){
 			graphicsDevice.drawString("FPS: "+ frameRate, 20, 20);//draw framerate
 		}
-		contentPane.getGraphics().drawImage(imageBuffer, 0, 0, contentPane);
+		
+		drawPanel.getGraphics().drawImage(imageBuffer, 0, 0, drawPanel);//draw the graphics buffer to drawPanel
+		
+		
+		frameTime += gameTime.getElapsedTime().getTimeSeconds(); //increment the amount of time between fps updates
 		
 		//refresh the fps counter after a second has elapsed
-				if (frameTime > 1){
-					frameTime = 0;
-					frameRate = frameCount;
-					frameCount = 0;
-				}
+		if (frameTime > 1){
+			frameTime = 0;
+			frameRate = frameCount;
+			frameCount = 0;
+		}
 		
 		frameCount++;//increment frame count
-		frameTime += gameTime.getElapsedTime().getTimeSeconds(); //increment the amount of time between fps updates
+		
 		
 	}
 	

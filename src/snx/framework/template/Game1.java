@@ -17,8 +17,8 @@ public class Game1 extends Game {
 	 * Called to once per runtime to initialize values
 	 */
 	public void initialize(){
-		//TODO: put initialization code here
 		super.initialize();
+		//TODO: put initialization code here
 		
 	}
 	

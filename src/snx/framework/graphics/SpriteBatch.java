@@ -124,6 +124,30 @@ public class SpriteBatch {
 	}
 	
 	/**
+	 * A more convenient rectangle drawing method
+	 * @param dest
+	 * @param color
+	 */
+	public void drawRectangle(Rectangle dest, Color color){
+		Color oCol = graphics.getColor();
+		graphics.setColor(color);
+		graphics.drawRect(dest.x, dest.y, dest.width, dest.height);
+		graphics.setColor(oCol);
+	}
+	
+	/**
+	 * A more convenient rectangle drawing method
+	 * @param dest
+	 * @param color
+	 */
+	public void drawFillRectangle(Rectangle dest, Color color){
+		Color oCol = graphics.getColor();
+		graphics.setColor(color);
+		graphics.fillRect(dest.x, dest.y, dest.width, dest.height);
+		graphics.setColor(oCol);
+	}
+	
+	/**
 	 * Clears the entire graphics object by filling it with one color
 	 * @param c The color to fill the graphics with
 	 */
