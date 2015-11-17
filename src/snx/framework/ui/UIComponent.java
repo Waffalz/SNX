@@ -120,8 +120,7 @@ public class UIComponent {
 	 * @param gameTime
 	 */
 	protected void processChildren(GameTime gameTime) {
-		updateChildren(gameTime);
-		
+
 		boolean hasChanged = (!addList.isEmpty() || !removeList.isEmpty());
 		//update queues
 		addChildrenInQueue();
@@ -135,6 +134,8 @@ public class UIComponent {
 				}
 			}); //sort children based on depth
 		}
+		
+		updateChildren(gameTime);
 	}
 	
 	/**

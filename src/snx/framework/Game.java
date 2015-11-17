@@ -26,7 +26,7 @@ public class Game {
 	
 	private boolean running; //whether the game loop is running
 	
-	public boolean framerateVisible;
+	public boolean numbersVisible;
 	private int frameCount;
 	private float frameTime;
 	private int frameRate;
@@ -40,7 +40,7 @@ public class Game {
 	
 	public Game(){
 		running = false;
-		framerateVisible = false;
+		numbersVisible = false;
 		
 		//creating the window
 		window = new JFrame();
@@ -173,7 +173,7 @@ public class Game {
 		draw(gameTime);//calls to the draw method
 		//draw the contents of the buffer to the contentPane
 		graphicsDevice.setColor(Color.BLACK);
-		if (framerateVisible){
+		if (numbersVisible){
 			graphicsDevice.drawString("FPS: "+ frameRate, 0, 10);//draw framerate
 		}
 		

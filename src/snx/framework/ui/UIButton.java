@@ -60,12 +60,12 @@ public class UIButton extends UIComponent {
 		if (isEnabled() &&  isVisible()){
 			mouseOver = (getDefiniteBounds().contains(mouse.getPosition()));//if mouse is within the bounds of the button
 			pressed = (mouseOver && mouse.isMouse1Pressed());
-		}
-		
-		//activate listeners when mouse is released over the button 
-		if (mouseOver &&  isVisible() && isEnabled() && !mouse.isMouse1Pressed() && oMouse.isMouse1Pressed()){
-			for (Runnable ru : listeners){
-				ru.run();
+			
+			//activate listeners when mouse is released over the button 
+			if (mouseOver && !mouse.isMouse1Pressed() && oMouse.isMouse1Pressed()){
+				for (Runnable ru : listeners){
+					ru.run();
+				}
 			}
 		}
 		
