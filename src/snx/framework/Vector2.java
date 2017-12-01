@@ -1,37 +1,50 @@
 package snx.framework;
 
 /**
- * By Waffalz
- * Represents 2-dimensional coordinates. Vector math ftw
+ * Represents 2-dimensional coordinates
  */
 public class Vector2 {
 	public float x;
 	public float y;
 	
+	/**
+	 * Default constructor; creates a new Vector2 of X and Y 0
+	 */
 	public Vector2(){
 		x = 0;
 		y = 0;
 	}
 	
+	/**
+	 * Creates a new Vector2 of specified X and Y ocmponents
+	 * @param x The X component of the Vector2
+	 * @param y The Y component of the Vector2
+	 */
 	public Vector2(float x, float y){
 		this.x = x;
 		this.y = y;
 	}
 	
+	/**
+	 * Creates a copy of an existing Vector2
+	 * @param toCopy The Vector2 to copy
+	 */
 	public Vector2(Vector2 toCopy){
 		this.x = toCopy.x;
 		this.y = toCopy.y;
 	}
 	
-	/*
-	 * returns the length of the vector. You know, Pythagorean theorum
+	/**
+	 * returns the length of the vector. You know, Pythagorean theorem stuff
+	 * @return The length of the vector
 	 */
 	public float getLength(){
 		return (float)Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 	}
 	
-	/*
+	/**
 	 * returns the length of the vector, but left squared because finding roots takes a lot of true
+	 * @return The length of the vector squared
 	 */
 	public float getLength2(){
 		return (float)(Math.pow(x, 2) + Math.pow(y, 2));

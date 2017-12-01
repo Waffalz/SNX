@@ -6,9 +6,8 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 /**
- * By Waffalz
- * enum that represents keyboard keys
- * Hardcoding hoooooooo
+ * Enum that represents keyboard keys.
+ * I'm updating documentation for this two years after I made it and even new I remember how painful typing this was.
  */
 public enum Keys{
 	
@@ -169,6 +168,9 @@ public enum Keys{
 	private int keyCode;
 	private int keyLocation;
 	
+	/**
+	 * List of keys grouped by key location, then identified by key ID
+	 */
 	public static final HashMap<Integer, HashMap<Integer, Keys>> keyMap = new HashMap<Integer, HashMap<Integer, Keys>>();
 	
 	Keys(){
@@ -213,7 +215,7 @@ public enum Keys{
 		return keyLocation;
 	}
 	
-	/*
+	/**
 	 * Initializes the keyLocations Hashmap and assigns key values to it
 	 */
 	public static void initialize(){
@@ -236,12 +238,21 @@ public enum Keys{
 		
 	}
 	
+	/**
+	 * Converts a java.awt KeyEvent into an SNX Key
+	 * @param e The KeyEvent to convert
+	 * @return The corresponding Key
+	 */
 	public static Keys getKeyFromKeyEvent(KeyEvent e){
 		//return the key in the hashmap of keys, organized by locations
 		return keyMap.get(new Integer(e.getKeyLocation())).get(new Integer(e.getKeyCode()));
 		
 	}
 	
+	/**
+	 * Returns the String representation of a Key
+	 * @return The description of the Key
+	 */
 	public String toString(){
 		return description;
 	}

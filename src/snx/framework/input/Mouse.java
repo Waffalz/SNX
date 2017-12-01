@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.event.MouseInputListener;
 
 /**
- * By Waffalz
  * Manages the game's mouse input
  */
 public class Mouse {
@@ -22,16 +21,25 @@ public class Mouse {
 		
 	}
 	
+	/**
+	 * Returns the JFrame for which Mouse tracks input
+	 * @return The window handle
+	 */
 	public static JFrame getWindowHandle(){
 		return windowHandle;
 	}
 	
+	/**
+	 * Returns the MouseListener that responds to the window handle's mouse input
+	 * @return The window handle's MouseListener
+	 */
 	public static MouseInputListener getGetWindowHandleListener(){
 		return windowHandleListener;
 	}
 	
 	/**
 	 * Sets the window for which MouseState's static mouse control data refers to
+	 * @param nextWindow The window handle to set set to
 	 */
 	public static void setWindowHandle(JFrame nextWindow){
 		if (nextWindow != windowHandle){
@@ -114,6 +122,10 @@ public class Mouse {
 		}
 	}
 	
+	/**
+	 * Returns the state of the Mouse at the time the method was called
+	 * @return The current state of the Mouse
+	 */
 	public static MouseState getState(){
 		return (MouseState)currentState.clone();
 	}

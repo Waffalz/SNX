@@ -86,14 +86,14 @@ public class Game {
 	}
 	
 	/**
-	 * 
+	 * Called when content needs to be loaded. Might need to be called to later, but is mainly used to be overridden by Game1
 	 */
 	public void loadContent(){
 		
 	}
 	
 	/**
-	 * 
+	 * Called when content needs to be unloaded. Might need to be called to later, but is mainly used to be overridden by Game1
 	 */
 	public void unloadContent(){
 		
@@ -117,7 +117,6 @@ public class Game {
 			
 			running = true;
 			while(running){
-				//TODO: put the game loop in a separate Tick method
 				currentStartTime = System.currentTimeMillis();//reset the start of the new iteration
 				
 				long timeDifference = currentStartTime - lastStartTime; //time between each iteration of the loop
@@ -128,9 +127,6 @@ public class Game {
 				//call to update
 				update(time);
 				
-				//TODO: if update takes longer than it should, record overtime and update when accumulated overtime adds up
-				
-				//TODO: implement draw skipping when needed
 				//draw to the screen
 				refreshScreen(time);
 				
@@ -159,6 +155,7 @@ public class Game {
 	/**
 	 * Called to a number of times every second to maintain... stuff
 	 * Overridden by subclasses to do their own update things
+	 * @param time The current GameTime as of the time the method is called
 	 */
 	public void update(GameTime time){
 		
@@ -166,7 +163,8 @@ public class Game {
 	
 	/**
 	 * calls to draw, and implements double buffering to prevent screen tearing
-	 * also adds a framerate counter, which is nice
+	 * also adds a frame rate counter, which is nice
+	 * @param gameTime The current GameTime as of the time the method is called
 	 */
 	public void refreshScreen(GameTime gameTime){
 		
@@ -188,55 +186,77 @@ public class Game {
 			frameRate = frameCount;
 			frameCount = 0;
 		}
-		
 		frameCount++;//increment frame count
-		
-		
 	}
 	
 	/**
 	 * called to when graphics are to be handled
-	 * 
+	 * @param time The current GameTime as of the time the method is called
 	 */
 	public void draw(GameTime time){
 		
 	}
 	
+	/**
+	 * Kills the game
+	 */
 	public void exit(){
 		System.exit(0);
 	}
 	
-	//properties hoooooo
+	//encapsulation hooooooo
 	
+	/**
+	 * Returns the window
+	 * @return The JFrame the game is running in
+	 */
 	public JFrame getWindow(){
 		return window;
 	}
 	
+	/**
+	 * Returns the content pane of the game window
+	 * @return The window's content pane
+	 */
 	public JPanel getContentPane(){
 		return contentPane;
 	}
 	
+	/**
+	 * Returns whether the game is running
+	 * @return Whether the game is running
+	 */
 	public boolean isRunning(){
 		return running;
 	}
 	
+	/**
+	 * Returns the graphics device the game is drawing on
+	 * @return The game's graphics device
+	 */
 	public Graphics2D getGraphicsDevice(){
 		return graphicsDevice;
 	}
 	
+	/**
+	 * Returns the content manager that is operating for this instance of the game
+	 * @return The game's content manager
+	 */
 	public ContentManager getContentManager(){
 		return content;
 	}
 
 	/**
-	 * @return the gameState
+	 * The state of the game
+	 * @return The gameState
 	 */
 	public GameState getGameState() {
 		return gameState;
 	}
 
 	/**
-	 * @param gameState the gameState to set
+	 * Sets the state of the game
+	 * @param newState The GameState to be set to
 	 */
 	public void setGameState(GameState newState){
 		if (newState.getParent() == null){

@@ -28,10 +28,11 @@ public class UILabel extends UIComponent {
 		vAlign = VerticalTextAlignment.Center;
 	}
 	
-	public void update(GameTime gameTime){
-		super.update(gameTime);
-	}
-	
+	/**
+	 * Draws the component, its text, and its children
+	 * @param gameTime The time of the game at which draw is called
+	 * @param spriteBatch The SpriteBatch to draw the component
+	 */
 	public void draw(GameTime gameTime, SpriteBatch spriteBatch){
 		if (isVisible()){
 			Rectangle defBounds = getDefiniteBounds();
@@ -42,6 +43,11 @@ public class UILabel extends UIComponent {
 		
 	}
 	
+	/**
+	 * Draws the label's text
+	 * @param spriteBatch The SpriteBatch to draw to
+	 * @param col the color of the font
+	 */
 	private void drawText(SpriteBatch spriteBatch, Color col){
 		FontMetrics metrics = spriteBatch.getGraphicsDevice().getFontMetrics(font);
 		String[] lines = text.split("\n");
@@ -89,70 +95,80 @@ public class UILabel extends UIComponent {
 	}
 
 	/**
-	 * @return the font
+	 * Returns the font of the text
+	 * @return The font of the text
 	 */
 	public Font getFont() {
 		return font;
 	}
 
 	/**
-	 * @param font the font to set
+	 * Sets the font of the text
+	 * @param font The new font of the text
 	 */
 	public void setFont(Font font) {
 		this.font = font;
 	}
 
 	/**
-	 * @return the text
+	 * Gets the text of the label
+	 * @return The label's text
 	 */
 	public String getText() {
 		return text;
 	}
 
 	/**
-	 * @param text the text to set
+	 * Sets the text of the label
+	 * @param text The new text of the label
 	 */
 	public void setText(String text) {
 		this.text = text;
 	}
 
 	/**
-	 * @return the textColor
+	 * Returns the color of the text
+	 * @return The text color
 	 */
 	public Color getTextColor() {
 		return textColor;
 	}
 
 	/**
-	 * @param textColor the textColor to set
+	 * Sets the color of the text
+	 * @param textColor The new color of the text
 	 */
 	public void setTextColor(Color textColor) {
 		this.textColor = textColor;
 	}
 
 	/**
-	 * @return the hAlign
+	 * Gets the horizontal alignment of the text
+	 * @return The horizontal alignment of the text
 	 */
 	public HorizontalTextAlignment gethAlign() {
 		return hAlign;
 	}
 
 	/**
-	 * @param hAlign the hAlign to set
+	 * Sets the horizontal alignment of the text
+	 * @param hAlign The new horizontal alignment
 	 */
 	public void sethAlign(HorizontalTextAlignment hAlign) {
 		this.hAlign = hAlign;
 	}
 
 	/**
-	 * @return the vAlign
+	 * Gets the vertical alignment of the text
+	 * @return The vertical alignment of the text
 	 */
 	public VerticalTextAlignment getvAlign() {
 		return vAlign;
 	}
 
 	/**
-	 * @param vAlign the vAlign to set
+	 * Sets the vertical alignment of the text
+	 * @param vAlign The new vertical alignment of the text
 	 */
 	public void setvAlign(VerticalTextAlignment vAlign) {
 		this.vAlign = vAlign;

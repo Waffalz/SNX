@@ -139,9 +139,10 @@ public class SpriteBatch {
 	}
 	
 	/**
-	 * A more convenient rectangle drawing method
-	 * @param dest
-	 * @param color
+	 * Draws a Rectangle to the screen
+	 * @param dest The bounds of the SpriteBatch on which the rectangle will appear
+	 * @param thickness The line thickness of the rectangle
+	 * @param color The line color of the rectangle
 	 */
 	public void drawRectangle(Rectangle dest, float thickness, Color color){
 		Color oCol = graphics.getColor();
@@ -154,9 +155,9 @@ public class SpriteBatch {
 	}
 	
 	/**
-	 * A more convenient rectangle drawing method
-	 * @param dest
-	 * @param color
+	 * Draws a rectangle of specified line color
+	 * @param dest The bounds of the rectangle to be drawn to the SpriteBatch
+	 * @param color The fill color of the rectangle
 	 */
 	public void drawFillRectangle(Rectangle dest, Color color){
 		Color oCol = graphics.getColor();
@@ -178,10 +179,17 @@ public class SpriteBatch {
 		
 	}
 	
+	/**
+	 * Returns the graphics device that the SpriteBatch is drawing on
+	 * @return The SpriteBatch's graphics device
+	 */
 	public Graphics2D getGraphicsDevice(){
 		return graphics;
 	}
 	
+	/**
+	 * Prints the list of all fonts available. Mainly used for the developer to pick out fonts
+	 */
 	public static void printAllFonts(){
 		Font[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
 		for (Font fo : fonts){

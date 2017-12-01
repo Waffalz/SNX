@@ -7,7 +7,6 @@ import snx.framework.Vector2;
 import snx.framework.graphics.SpriteBatch;
 
 /**
- * By Waffalz
  * A convenience class for keeping track of positioning
  */
 public class Entity {

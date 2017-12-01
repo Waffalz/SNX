@@ -52,6 +52,10 @@ public class UIButton extends UIComponent {
 		oMouse = Mouse.getState();
 	}
 	
+	/**
+	 * Updates the button and checks for mouse interaction
+	 * @param gameTime The time of the game at which update is called
+	 */
 	public void update(GameTime gameTime){
 		super.update(gameTime);
 		MouseState mouse = Mouse.getState();
@@ -74,6 +78,11 @@ public class UIButton extends UIComponent {
 		removeListenersInQueue();
 	}
 	
+	/**
+	 * Draws the button and its children
+	 * @param gameTime The time of the game at which draw is called
+	 * @param spriteBatch The SpriteBatch to draw the component
+	 */
 	public void draw(GameTime gameTime, SpriteBatch spriteBatch){
 		if (isVisible()){
 			Rectangle defBounds = getDefiniteBounds();

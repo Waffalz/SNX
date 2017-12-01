@@ -60,10 +60,19 @@ public class UIComponent {
 		removeList = new ArrayList<UIComponent>();
 	}
 	
+	/**
+	 * Calls whenever the state of the component needs to be updated
+	 * @param gameTime The time of the game at which update is called
+	 */
 	public void update(GameTime gameTime){
 		processChildren(gameTime);
 	}
 	
+	/**
+	 * Draws the component and its children
+	 * @param gameTime The time of the game at which draw is called
+	 * @param spriteBatch The SpriteBatch to draw the component
+	 */
 	public void draw(GameTime gameTime, SpriteBatch spriteBatch){
 		
 		if (visible){
@@ -75,7 +84,8 @@ public class UIComponent {
 	}
 
 	/**
-	 * @param spriteBatch
+	 * Draws the background of the component
+	 * @param spriteBatch The SpriteBatch to draw to
 	 */
 	protected void drawBackground(SpriteBatch spriteBatch, Rectangle dest, Color col, Color bCol) {
 		
@@ -107,7 +117,7 @@ public class UIComponent {
 	
 	/**
 	 * puts toRemove in queue to be removed from this' children when not iterating through children
-	 * @param toRemove
+	 * @param toRemove The component to be removed
 	 */
 	public void remove(UIComponent toRemove){
 		if (!removeList.contains(toRemove) && children.contains(toRemove)){
@@ -117,7 +127,7 @@ public class UIComponent {
 
 	/**
 	 * updates children and handles add/removal queues
-	 * @param gameTime
+	 * @param gameTime The GameTime for that update cycle
 	 */
 	protected void processChildren(GameTime gameTime) {
 
@@ -139,8 +149,9 @@ public class UIComponent {
 	}
 	
 	/**
-	 * @param gameTime 
-	 * @param spriteBatch
+	 * Traverses through the component's children and draws the children
+	 * @param gameTime The GameTime of the draw cycle
+	 * @param spriteBatch The SpriteBatch to be drawn to
 	 */
 	protected void drawChildren(GameTime gameTime, SpriteBatch spriteBatch) {
 		for (UIComponent child : children){
@@ -148,6 +159,10 @@ public class UIComponent {
 		}
 	}
 	
+	/**
+	 * Traverses through the component's children and updates them
+	 * @param gameTime The time of the game
+	 */
 	private void updateChildren(GameTime gameTime){
 		for (UIComponent child : children){
 			child.update(gameTime);
@@ -176,18 +191,27 @@ public class UIComponent {
 		removeList.clear();
 	}
 	
-	//Because your code isn't professional until you have a buttload of nearly excessive encapsulation
-
+	// Because your code isn't professional until you have a buttload of nearly excessive encapsulation
+	
+	/**
+	 * Returns the position of the component
+	 * @return The Position of the component relative to its parent
+	 */
 	public Point getPosition() {
 		return bounds.getLocation();
 	}
-
+	
+	/**
+	 * Sets the position of the component
+	 * @param position the new position of the component
+	 */
 	public void setPosition(Point position) {
 		this.bounds.setLocation(position);;
 	}
 	
 	/**
 	 * returns the position of the component relative to 0,0 of the game's window's contentPane
+	 * @return The bounds of the component relative to the game window as a whole
 	 */
 	public Rectangle getDefiniteBounds(){
 		if (parent == null){
@@ -198,23 +222,43 @@ public class UIComponent {
 			//yeah, it's kinda recursive
 		}
 	}
-
+	
+	/**
+	 * Returns the size of the component
+	 * @return The size of the component
+	 */
 	public Dimension getSize() {
 		return bounds.getSize();
 	}
-
+	
+	/**
+	 * Sets the size of the component
+	 * @param size The new size of the component
+	 */
 	public void setSize(Dimension size) {
 		this.bounds.setSize(size);
 	}
 	
+	/**
+	 * Returns the bounds of the component relative to its parent
+	 * @return The bonds of the component, relative to the position of its parent
+	 */
 	public Rectangle getBounds(){
 		return bounds;
 	}
 	
+	/**
+	 * Sets the size and position of the component, relative to its parent
+	 * @param bounds The new bounds of the component
+	 */
 	public void setBounds(Rectangle bounds){
 		this.bounds = bounds;
 	}
-
+	
+	/**
+	 * Returns the background image
+	 * @return The background image
+	 */
 	public BufferedImage getImage() {
 		return image;
 	}
@@ -223,37 +267,65 @@ public class UIComponent {
 		this.image = image;
 	}
 
+	/**
+	 * Returns the component's parent
+	 * @return The component's parent
+	 */
 	public UIComponent getParent() {
 		return parent;
 	}
 	
+	/**
+	 * Sets the value of the component's parent.
+	 * @param The new parent
+	 */
 	private void setParent(UIComponent parent){
 		this.parent = parent;
 	}
-
+	
+	/**
+	 * Returns a list of the component's children components
+	 * @return A list of the component's children
+	 */
 	public ArrayList<UIComponent> getChildren() {
-		return new ArrayList<UIComponent>(children);
+		return new ArrayList<UIComponent>(children); //copy the list of children
 	}
 
+	/**
+	 * Returns the component's depth (z value, order, etc)
+	 * @return The component's depth
+	 */
 	public int getDepth() {
 		return depth;
 	}
 
+	/**
+	 * Sets the depth (zValue, order, etc) of the component
+	 * @param depth The new depth
+	 */
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
-
+	
+	/**
+	 * Returns whether the component is visible
+	 * @return Whether the component is visible
+	 */
 	public boolean isVisible() {
 		return visible;
 	}
-
+	
+	/**
+	 * Set whether the component is visible
+	 * @param visible The new state of being visible
+	 */
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
 
-
 	/**
-	 * @return the enabled
+	 * Returns whether the component is enabled
+	 * @return The current state of being enabled
 	 */
 	public boolean isEnabled() {
 		return enabled;
@@ -261,27 +333,31 @@ public class UIComponent {
 
 
 	/**
-	 * @param enabled the enabled to set
+	 * Sets the status of being enabled
+	 * @param enabled The new state of being enabled
 	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
 	/**
-	 * @return the color
+	 * Returns the background color
+	 * @return The color of the background
 	 */
 	public Color getColor() {
 		return color;
 	}
 
 	/**
-	 * @param color the color to set
+	 * Sets the color of the border
+	 * @param color The color to set
 	 */
 	public void setColor(Color color) {
 		this.color = color;
 	}
 
 	/**
+	 * Returns the color of the border
 	 * @return the borderColor
 	 */
 	public Color getBorderColor() {
@@ -289,13 +365,15 @@ public class UIComponent {
 	}
 
 	/**
-	 * @param borderColor the borderColor to set
+	 * Sets the color of the border
+	 * @param borderColor The borderColor to set
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
 	}
 
 	/**
+	 * Returns the size of the component's border
 	 * @return the borderSize
 	 */
 	public float getBorderSize() {
@@ -303,6 +381,7 @@ public class UIComponent {
 	}
 
 	/**
+	 * Sets the size of the component's border
 	 * @param borderSize the borderSize to set
 	 */
 	public void setBorderSize(float borderSize) {

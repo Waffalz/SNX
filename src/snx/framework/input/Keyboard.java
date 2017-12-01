@@ -6,7 +6,6 @@ import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 /**
- * By Waffalz
  * Handles converting keyboard input into KeybordState form
  */
 public class Keyboard {
@@ -16,22 +15,41 @@ public class Keyboard {
 	private static JFrame windowHandle;
 	private static KeyListener windowHandleListener;
 	
+	/**
+	 * Calls to initialize for Keys
+	 */
 	public static void initialize(){
 		Keys.initialize();
 	}
 	
+	/**
+	 * Gets the current state of the keyboard
+	 * @return The current KeyboardState
+	 */
 	public static KeyboardState getState(){
 		return (KeyboardState)currentState.clone();
 	}
 	
+	/**
+	 * Returns the KeyListener that responds to the windowHandle's KeyEvents
+	 * @return The window handle's KeyListener
+	 */
 	public static KeyListener getWindowHandleListener(){
 		return windowHandleListener;
 	}
 	
+	/**
+	 * Returns the JFrame that the Keyboard is recording input for
+	 * @return The current windowHandle
+	 */
 	public static JFrame getWindowHandle(){
 		return windowHandle;
 	}
 	
+	/**
+	 * Sets sets the JFrame for which the Keyboard listens to input for 
+	 * @param newHandle The new handle
+	 */
 	public static void setWindowHandle(JFrame newHandle){
 		//TODO: add listeners, implement key listeners, set currentState's values
 		

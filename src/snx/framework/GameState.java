@@ -3,9 +3,8 @@ package snx.framework;
 import snx.framework.graphics.SpriteBatch;
 
 /**
- * By Waffalz
  * A custom class I made
- * Represents different contexts of the game. Subclass this to make your own states
+ * Represents different contexts of the game. Extend this to make your own states.
  */
 public abstract class GameState {
 	private Game parent;

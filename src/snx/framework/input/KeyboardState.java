@@ -3,8 +3,7 @@ package snx.framework.input;
 import java.util.ArrayList;
 
 /**
- * By Waffalz
- * A state-based representation of the state of the keyboard keys. Because Java's event-driven one is crap
+ * A state-based representation of the state of the keyboard keys. Because I don't like Java's input system
  */
 public class KeyboardState {
 	

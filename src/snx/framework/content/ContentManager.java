@@ -11,7 +11,6 @@ import java.util.Scanner;
 import javax.imageio.ImageIO;
 
 /**
- * By Waffalz
  * Handles loading content
  */
 public class ContentManager {
@@ -30,7 +29,7 @@ public class ContentManager {
 	}
 	
 	/**
-	 * Parses a text file of specified path and returns a List<String> representation of its data
+	 * Parses a text file of specified path and returns a list of each line in the text file
 	 * @param pathName The path of the text file to be read
 	 * @return A list of all the lines of text in the file
 	 */
