@@ -1,0 +1,1 @@
+Used when making SNX to test keyboard control, content loading, the game loop, the update cycle, and the drawing cycle

@@ -1,0 +1,2 @@
+This is a file with text in it
+If all goes well this will be read automatically by the ContentManager class
